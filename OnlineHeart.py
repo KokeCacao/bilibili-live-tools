@@ -4,7 +4,7 @@ import datetime
 import asyncio
 import printer
 import login
-
+from configloader import ConfigLoader
 
 def CurrentTime():
     currenttime = int(time.mktime(datetime.datetime.now().timetuple()))
@@ -22,13 +22,14 @@ async def heartbeat():
 async def draw_lottery():
     for i in range(74, 90):
         json_response = await bilibili.get_lotterylist(i)
-        blacklist = ['test', 'TEST', '测试', '加密']
+        blacklist = ConfigLoader().dic_user['other_control']['additional_blacklist'].append(['test', 'TEST', '测试', '加密'])
         # -400 不存在
         if not json_response['code']:
             temp = json_response['data']['title']
             if any(word in temp for word in blacklist):
                 print("检测到疑似钓鱼类测试抽奖，默认不参与，请自行判断抽奖可参与性")
-                # print(temp)
+                if (ConfigLoader().dic_user['other_control']['debug_mode']):
+                    print(temp)
             else:
                 check = json_response['data']['typeB']
                 for g, value in enumerate(check):
