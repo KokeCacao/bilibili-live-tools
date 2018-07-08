@@ -17,7 +17,7 @@ silver2coin = false
 
 # 自动投满佩戴勋章当日亲密度
 send2wearing-medal = false
-# 房间号 短房间 
+# 房间号 短房间
 send2medal = []
 
 # 老接口兑换硬币为银瓜子
@@ -37,3 +37,7 @@ keep-login = true
 
 # 默认监听房间号
 default_monitor_roomid = 23058
+
+# 屏蔽關鍵詞
+additional_blacklist = []
+debug_mode = true

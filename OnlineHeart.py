@@ -44,7 +44,7 @@ async def draw_lottery():
         else:
             break
 
-        
+
 async def run():
     while 1:
         printer.info(["心跳"], True)
